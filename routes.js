@@ -21,6 +21,6 @@ exports.routes = [
     {
         method: "GET",
         path: "/{param*}",
-        handler: () => reply.file("/src/index.html")
+        handler: () => reply.file(path.join(__dirname, "/src/index.html"))
     }
 ];
