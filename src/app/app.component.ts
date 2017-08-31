@@ -22,7 +22,6 @@ import { FormBuilder, FormGroup } from "@angular/forms";
             <form [formGroup]="form">
                 <div class="form-group">
                   <select class="form-control" formControlName="id">
-                    <option value="" disabled>Select a Rictionary</option>
                     <option *ngFor="let item of list" [ngValue]="item.RictionaryID">{{item.RictionaryName}}<option>
                   </select>
                 </div>
@@ -61,9 +60,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.rictionaryService.list().subscribe(response => {
       this.list = response;
+      
       this.form.controls.id.valueChanges.subscribe((value: any) => {
         this.loadRictionaryData(value);
       });
+
+      this.form.controls.id.setValue(this.list[0].RictionaryID);
     });
   }
 
