@@ -1,37 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { DataService } from "./services/data.service";
-import { HomeComponent } from './features/home/home.component';
 import { ViewComponent } from './features/view/view.component';
-import { EditComponent } from './features/edit/edit.component';
-
-const routes: Routes = [
-  { path: "home", component: HomeComponent },
-  { path: "view", component: ViewComponent },
-  { path: "edit", component: EditComponent },
-  { path: "", redirectTo: "/home", pathMatch: "full"  }
-];
+import { RictionaryService } from "./services/rictionary.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ViewComponent,
-    EditComponent
+    ViewComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(
-      routes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    ReactiveFormsModule
   ],
-  providers: [DataService],
+  providers: [DataService, RictionaryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

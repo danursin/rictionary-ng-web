@@ -10,43 +10,37 @@ export class DataService {
     private apiUrl = environment.apiBaseUrl;
     constructor(private http: HttpClient) {}
 
-    public all<T>(modelName: string): Observable<T>{
-        return this.http.get(`${this.apiUrl}/shared/${modelName}`)
-            .map((res: any) => { return res.json() });
+    public all<T>(modelName: string): Observable<T[]>{
+        return this.http.get(`${this.apiUrl}/shared/${modelName}`).map((res: T[]) => res);
     }
 
     public get<T>(modelName: string, id: number): Observable<T>{
-        return this.http.get(`${this.apiUrl}/shared/${modelName}/${id}`)
-            .map((res: any) => { return res.json() });
+        return this.http.get(`${this.apiUrl}/shared/${modelName}/${id}`).map((res: T) => res);
     }
 
-    public query<T>(query: IQueryParams): Observable<T>{
-        return this.http.post(`${this.apiUrl}/shared/query`, query)
-            .map((res: any) => { return res.json() });
+    public query<T>(query: IQueryParams): Observable<T[]>{
+        return this.http.post(`${this.apiUrl}/shared/query`, query).map((res: T[]) => res);
     }
 
     public create<T>(modelName: string, model: any): Observable<T>{
-        return this.http.put(`${this.apiUrl}/shared/${modelName}`, model)
-            .map((res: any) => { return res.json() });
+        return this.http.put(`${this.apiUrl}/shared/${modelName}`, model).map((res: T) => res);
     }
 
     public update<T>(modelName: string, id: number, model: any): Observable<T>{
-        return this.http.put(`${this.apiUrl}/shared/${modelName}/${id}`, model)
-            .map((res: any) => { return res.json() });
+        return this.http.put(`${this.apiUrl}/shared/${modelName}/${id}`, model).map((res: T) => res);
     }
 
     public delete<T>(modelName: string, id: number): Observable<T>{
-        return this.http.delete(`${this.apiUrl}/shared/${modelName}/${id}`)
-            .map((res: any) => { return res.json() });
+        return this.http.delete(`${this.apiUrl}/shared/${modelName}/${id}`).map((res: T) => res);
     }
 }
 
 export interface IQueryParams {
-    table: string,
+    model: string,
     attributes?: Array<string|string[]>,
     include?: any[],
     where?: Object,
-    sort?: string[][],
+    order?: string[][],
     offset?: number,
     limit?: number
 }
