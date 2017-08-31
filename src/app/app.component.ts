@@ -27,7 +27,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
                   </select>
                 </div>
             </form>
-            
+
           </div>
         </div>
         
@@ -48,9 +48,9 @@ export class AppComponent implements OnInit {
     private fb: FormBuilder
   ) { }
   
-  private list: { RictionaryID: number, RictionaryName: string }[];
-  private form: FormGroup = this.fb.group({ id: null });
-  private rictionary: Rictionary;
+  list: { RictionaryID: number, RictionaryName: string }[];
+  form: FormGroup = this.fb.group({ id: null });
+  rictionary: Rictionary;
 
   loadRictionaryData(id: number){
     this.rictionaryService.get(id).subscribe((rictionary: Rictionary) => {
