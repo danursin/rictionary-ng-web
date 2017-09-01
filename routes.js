@@ -1,26 +1,29 @@
 const path = require("path");
 
+const bundles = ["inline", "main", "polyfills", "styles", "vendor"];
+
 exports.routes = [
-    {
-        method: 'GET',
-        path: '/src/{param*}',
-        handler: (request, reply) => {
-            reply.file(path.join(__dirname, request.params.param));
-        }
-    },
-    {
-        method: 'GET',
-        path: '/dist/{param*}',
-        handler: {
-            directory: {
-                path: path.join(__dirname, 'dist'),
-                listing: true
+    ...bundles.map(file => {
+        return {
+            method: "GET",
+            path: `/${file}.{hash}.bundle.js`,
+            handler: (request, reply) => {
+                reply.file(path.join(__dirname, `/dist/${file}.${request.params.hash}.bundle.js`));
             }
+        }
+    }),
+    {
+        method: "GET",
+        path: "/favicon.ico",
+        handler: (request, reply) => {
+            reply.file(path.join(__dirname, `/dist/favicon.ico`));
         }
     },
     {
         method: "GET",
-        path: "/{param*}",
-        handler: () => reply.file(path.join(__dirname, "/src/index.html"))
+        path: "/{other*}",
+        handler: (request, reply) => {
+            reply.file(path.join(__dirname, "/dist/index.html"));
+        }
     }
 ];
