@@ -1,19 +1,31 @@
 <form novalidate [formGroup]="form">
     <ul class="list-group">
-      <li class="list-group-item py-1" [formArrayName]="Values" *ngFor="let map of Values.controls; index as i" >
-        <div class="row">
-          <div class="col-2">
-            <h4 class="align-middle mb-0 text-center">
-              <span class="badge badge-pill badge-secondary">{{ map.letter }}</span>
-            </h4>
-          </div>
-          <div class="col-8">
-            <input class="form-control form-control-sm" formControlName="{{map.key}}">
-          </div>
-          <div class="col-2 text-center">
-            Error Status?
-          </div>
-        </div>
-      </li>
+        <li class="list-group-item active py-2">
+            <div class="row">
+                <div class="col-9">
+                    <h4 class="mb-0">
+                        RictionaryName
+                    </h4>
+                </div>
+                <div class="col-3">
+                    <small class="text-right font-italic">By CreatedBy</small>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item py-1" >
+            <app-field>
+                <app-field-left>
+                    <h4 class="align-middle mb-0 text-center">
+                        <span class="badge badge-pill badge-secondary">A</span>
+                    </h4>
+                </app-field-left>
+                <app-field-center>
+                    <span>value</span>
+                </app-field-center>
+                <app-field-right>
+                    
+                </app-field-right>
+            </app-field>
+        </li>
     </ul>
   </form>
