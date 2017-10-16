@@ -13,9 +13,6 @@ import { DataService } from "./services/data.service";
 import { RictionaryService } from "./services/rictionary.service";
 import { SpellComponent } from './features/spell/spell.component';
 
-// import { SharedModule } from './shared/shared.module';
-
-
 @NgModule({
   declarations: [
     AppComponent,
