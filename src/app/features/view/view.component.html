@@ -1,0 +1,31 @@
+<ul class="list-group" *ngIf="rictionary">
+    <li class="list-group-item active py-2">
+        <div class="row">
+            <div class="col-md-9">
+                <h4 class="mb-0">
+                    {{ rictionary.RictionaryName }}
+                </h4>
+            </div>
+            <div class="col-md-3">
+                <small class="text-right font-italic">By {{rictionary.CreatedBy}}</small>
+            </div>
+        </div>
+    </li>
+    <li class="list-group-item py-1" *ngFor="let map of rictionary.Values">
+        <app-field>
+            <app-field-left>
+                <h4 class="align-middle mb-0 text-center">
+                    <span class="badge badge-pill badge-secondary">{{ map.letter }}</span>
+                </h4>
+            </app-field-left>
+            <app-field-center>
+                <span>{{ map.value }}</span>
+            </app-field-center>
+            <app-field-right>
+                <a target="_blank" class="btn btn-sm btn-outline-secondary text-center" [href]="'http://www.google.com/search?q=' + map.value">
+                    <i class="fa fa-search"></i>
+                </a>
+            </app-field-right>
+        </app-field>
+    </li>
+</ul>

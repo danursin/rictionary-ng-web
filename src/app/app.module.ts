@@ -1,17 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import 'rxjs/Rx';
 
 import { AppComponent } from './app.component';
-import { DataService } from "./services/data.service";
 import { ViewComponent } from './features/view/view.component';
+import { EditComponent } from './features/edit/edit.component';
+import { FieldComponent } from './shared/field/field.component';
+
+import { DataService } from "./services/data.service";
 import { RictionaryService } from "./services/rictionary.service";
+import { SpellComponent } from './features/spell/spell.component';
+
+// import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ViewComponent
+    ViewComponent,
+    EditComponent,
+    FieldComponent,
+    SpellComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +30,9 @@ import { RictionaryService } from "./services/rictionary.service";
     ReactiveFormsModule
   ],
   providers: [DataService, RictionaryService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class AppModule { }

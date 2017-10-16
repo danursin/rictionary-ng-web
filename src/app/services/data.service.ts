@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataService {
@@ -11,27 +10,27 @@ export class DataService {
     constructor(private http: HttpClient) {}
 
     public all<T>(modelName: string): Observable<T[]>{
-        return this.http.get(`${this.apiUrl}/shared/${modelName}`).map((res: T[]) => res);
+        return this.http.get<T[]>(`${this.apiUrl}/shared/${modelName}`);
     }
 
     public get<T>(modelName: string, id: number): Observable<T>{
-        return this.http.get(`${this.apiUrl}/shared/${modelName}/${id}`).map((res: T) => res);
+        return this.http.get<T>(`${this.apiUrl}/shared/${modelName}/${id}`);
     }
 
     public query<T>(query: IQueryParams): Observable<T[]>{
-        return this.http.post(`${this.apiUrl}/shared/query`, query).map((res: T[]) => res);
+        return this.http.post<T[]>(`${this.apiUrl}/shared/query`, query);
     }
 
     public create<T>(modelName: string, model: any): Observable<T>{
-        return this.http.put(`${this.apiUrl}/shared/${modelName}`, model).map((res: T) => res);
+        return this.http.put<T>(`${this.apiUrl}/shared/${modelName}`, model);
     }
 
     public update<T>(modelName: string, id: number, model: any): Observable<T>{
-        return this.http.put(`${this.apiUrl}/shared/${modelName}/${id}`, model).map((res: T) => res);
+        return this.http.put<T>(`${this.apiUrl}/shared/${modelName}/${id}`, model);
     }
 
     public delete<T>(modelName: string, id: number): Observable<T>{
-        return this.http.delete(`${this.apiUrl}/shared/${modelName}/${id}`).map((res: T) => res);
+        return this.http.delete<T>(`${this.apiUrl}/shared/${modelName}/${id}`);
     }
 }
 

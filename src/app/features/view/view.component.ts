@@ -1,18 +1,12 @@
-import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
-import { RictionaryService, Rictionary } from "../../services/rictionary.service";
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-view',
-  template: `<pre>{{rictionary | json}}</pre>`
+  templateUrl: './view.component.html'
 })
-export class ViewComponent implements OnInit, OnChanges {
+export class ViewComponent implements OnInit {
   
-  @Input() rictionary: number;
-  constructor(private rictionaryService: RictionaryService) { }
-
-  ngOnChanges(changes: SimpleChanges): void { 
-
-  }
+  @Input() rictionary: Rictionary;
 
   ngOnInit(): void {
 
